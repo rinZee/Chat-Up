@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-import UsernameField from '../components/usernameField';
+import UsernameField from '../components/UsernameField';
 
 export default function Home() {
   // users

@@ -1,9 +1,6 @@
 {
   "name": "chat-up",
   "version": "0.1.0",
-  "engines": {
-    "node": "14.16.1"
-  },
   "private": true,
   "scripts": {
     "dev": "next dev",
