@@ -5,7 +5,7 @@ import UsernameField from '../components/usernameField';
 
 export default function Home() {
   // users
-  const [user, setUser] = useState({})
+  const [users, setUsers] = useState({})
   // save the socket
   const [socket, setSocket] = useState(null);
 
@@ -40,16 +40,22 @@ const [isUsernameConfirmed, setUsernameConfirmed] = useState(false);
       newSocket.on("connect", () => {
       });
 
-      
+      newSocket.on('login', function(data){
+        console.log('a user ' + data.userId + ' connected');
+        // saving userId to array with socket ID
+        users[socket.id] = data.userId;
+      });
+      newSocket.on('disconnect', function(){
+        console.log('user ' + users[socket.id] + ' disconnected');
+        // remove saved socket from users object
+        delete users[socket.id];
+      });
       // handles message
       newSocket.on("message", (msg) => {
         setHistory((history) => [...history, msg]);
       });
 
-      // Logs when server disconnects
-      newSocket.on("disconnect", () => {
-        console.warn("WARNING: chat app disconnected");
-      });
+      
 
       setSocket(() => newSocket);
     }
@@ -83,7 +89,7 @@ if (!message || !isUsernameConfirmed) {
         <title>ChatUp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+<div className={}>
       {/* The username area */}
       <UsernameField
         completed={isUsernameConfirmed}
@@ -107,6 +113,7 @@ if (!message || !isUsernameConfirmed) {
 
 
      
+      </div>
 
     </div>
   );
