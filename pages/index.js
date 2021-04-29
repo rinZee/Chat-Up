@@ -89,7 +89,6 @@ if (!message || !isUsernameConfirmed) {
         <title>ChatUp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-<div className={}>
       {/* The username area */}
       <UsernameField
         completed={isUsernameConfirmed}
@@ -115,7 +114,6 @@ if (!message || !isUsernameConfirmed) {
      
       </div>
 
-    </div>
   );
 }
 
