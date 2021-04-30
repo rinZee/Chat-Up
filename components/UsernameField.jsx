@@ -2,7 +2,7 @@ import React from 'react'
 
 const UsernameField = ({completed, value, onSubmit, onChange}) => {
     if(completed) {return (
-        <div>{value}</div>
+        <div></div>
     )
     } else return (
         <div>
