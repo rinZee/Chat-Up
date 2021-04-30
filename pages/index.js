@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import styles from '../styles/Home.module.css';
 import { io } from "socket.io-client";
 import UsernameField from '../components/UsernameField';
 
@@ -83,14 +84,20 @@ if (!message || !isUsernameConfirmed) {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {/* This sets the page's title and favicon */}
       <Head>
         <title>ChatUp</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+<div className={styles.leftsection}>
+  <h1>{username}</h1>
+  <h2>Online</h2>
+</div>
+      <div className={styles.main}>
       {/* The username area */}
       <UsernameField
+      className={styles.userInfo}
         completed={isUsernameConfirmed}
         value={username}
         onChange={(value) => setUsername(value)}
@@ -98,18 +105,21 @@ if (!message || !isUsernameConfirmed) {
       />
 
       {/*display messages*/ }
+      <div className={styles.messages}>
 {history.map(({ username, message }, i) => (
-          <div key={i}>
-            <b>{username}</b>: {message}
+          <div className={styles.msg} key={i}>
+            <div className={styles.name}>{username}</div>
+            <div className={styles.messageBubble}>{message}</div>
           </div>
         ))}
+        </div>
 
       {/*form submit*/ }
-      <form onSubmit={handleSubmit}>
+      <form className={styles.submitMsg} onSubmit={handleSubmit}>
         <input placeholder='type your message' value={message} onChange={(e) => setMessage(e.target.value)} disabled={!isUsernameConfirmed}></input>
-        <button disabled={!isUsernameConfirmed}>Submit</button>
+        <button disabled={!isUsernameConfirmed}>Send</button>
       </form>
-
+</div>
 
      
       </div>
